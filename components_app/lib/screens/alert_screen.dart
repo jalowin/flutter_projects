@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -79,9 +79,12 @@ class AlertScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          onPressed: () => !Platform.isIOS
-              ? displayDialogAndroid(context)
-              : displayDialogIOS(context),
+          onPressed: () {
+            if (!kIsWeb && Platform.isAndroid) {
+              displayDialogAndroid(context);
+            }
+            displayDialogIOS(context);
+          },
           child: const Text('Mostrar Alerta'),
         ),
       ),
