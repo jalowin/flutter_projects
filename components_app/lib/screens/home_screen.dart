@@ -1,5 +1,7 @@
-import 'package:components_app/screens/screens.dart';
 import 'package:flutter/material.dart';
+
+import 'package:components_app/router/app_routes.dart';
+import 'package:components_app/theme/app_theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,20 +10,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          elevation: 0,
           title: const Center(
             child: Text('Componentes de Flutter'),
           ),
         ),
         body: ListView.separated(
             itemBuilder: (context, index) => ListTile(
-                  leading: const Icon(Icons.access_alarm_sharp),
+                  leading: Icon(AppRoutes.menuOptions[index].icon,
+                      color: AppTheme.primary),
                   onTap: () {
-                    Navigator.pushNamed(context, 'listview3');
+                    Navigator.pushNamed(
+                        context, AppRoutes.menuOptions[index].route);
                   },
-                  title: const Text('Nombre de ruta'),
+                  title: Text(AppRoutes.menuOptions[index].name),
                 ),
             separatorBuilder: (_, __) => const Divider(),
-            itemCount: 10));
+            itemCount: AppRoutes.menuOptions.length));
   }
 }
