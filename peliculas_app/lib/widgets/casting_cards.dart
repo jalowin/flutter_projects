@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CastingCards extends StatelessWidget {
-  const CastingCards({super.key});
+  const CastingCards({
+    super.key,
+    required this.movieId,
+  });
+
+  final int movieId;
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +38,18 @@ class _CastCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
+              child: const FadeInImage(
                 placeholder: AssetImage('assets/images/no-image.jpg'),
-                image: NetworkImage('https://via.placeholder.com/150x300'),
+                image: NetworkImage('https://via.placeholder.com/150x300.png'),
                 height: 140,
                 width: 100,
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            Text(
+            const Text(
               'actor.name',
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
